@@ -82,8 +82,9 @@ router.post('/login', function (request, response, next) {
 
                 console.log("This is my response cookie:   " + response.cookie('cookieUser', xhr.responseText));
                 
-                console.log(request.session.user);
+                console.log("My response object:  " + xhr.responseText);
                 response.send(xhr.responseText);
+                console.log("After sending response back to client");
 
             }
         }

@@ -17,7 +17,7 @@ function init() {
         var partial = searchField.value;
         var uri = 'foodsearch/foodsbychar/' + partial;
         var thresh = searchField.dataset.threshold;
-        if(thresh && Number(thresh) > 0) {
+        if(thresh && Number(thresh) > 3) {
             uri+='?threshold=' + Number(thresh);
         }
         xhrMethod("GET", uri, displayReturnFood);
@@ -42,7 +42,9 @@ var xhrMethod = function (method, url, callback, obj) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 if (callback) {
-                    console.log(JSON.parse(xhr.responseText));
+                    
+                    console.log("In XHR method expecting JSON from Node")
+                    console.log(xhr.responseText);
                     var responseString = JSON.parse(xhr.responseText);
                 } else {
                     if (obj && obj.obvs) {
@@ -577,7 +579,7 @@ Onclick login button
 var logInFunction = function (event) {
     
 
-    // event.preventDefault();
+   event.preventDefault();
 
 
     var loginUser = new User(document.getElementById('loginForm').username.value, 
@@ -595,7 +597,7 @@ var logInFunction = function (event) {
     console.log("This is my userObject:    " + loginUser.email + " " + loginUser.password);
 
 
-    //var jsonString = JSON.stringify(todoObject);
+    //var jsonString = JSON.stringify(loginUser);
 
     xhrMethod('POST', '/users/login', displayUser, loginUser);
 
@@ -606,7 +608,7 @@ Onclick logOUT button
 
 var logOutFunction = function (e) {
         
-    // e.preventDefault();
+    e.preventDefault();
     
    // var userName = document.getElementById('user');
     
@@ -633,7 +635,7 @@ Display logged in user
 *******************************************************/
 
  var displayUser = function(userObj) {
- console.log(userObj); 
+ console.log("This is my User Object after log in call " + userObj); 
         
   var user = document.createElement('h2');
 

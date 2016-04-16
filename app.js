@@ -1,5 +1,5 @@
 global.XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
+process.env['PORT'] = 8686;
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -57,9 +57,9 @@ app.get('/', function(request, response) {
     response.send('hey from app.js');
 })
 
-var server = app.listen(8686, function() {
+/*var server = app.listen(8686, function() {
     console.log("listening on port " + server.address().port);
-})
+})*/
 
 // error handlers
 
